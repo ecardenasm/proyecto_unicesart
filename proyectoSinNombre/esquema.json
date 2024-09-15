@@ -1,0 +1,91 @@
+{
+    "usuario": {
+        "userId": "",
+        "email": "",
+        "password": "",
+        "nickName": "",
+        "status": "",
+        "persona": {
+            "name": "",
+            "lastName": "",
+            "description": "",
+            "skills": "",
+            "profession": "",
+            "birthDate": "",
+            "city": {
+                "id": "",
+                "nombre": ""
+            },
+            "phone": "",
+            "gender": ""
+        },
+        "lastConnection": ""
+    },
+    "post": {
+        "postid": "",
+        "title": "",
+        "description": "",
+        "category": {
+            "id": "",
+            "nomrbe": ""
+        },
+        "technique": "",
+        "type": "",
+        "imageUrl": "",
+        "videoUrl": "",
+        "user": {
+            "userId": "",
+            "nickName": ""
+        },
+        "likes": [
+            {
+                "user": {
+                    "userId": "",
+                    "nickName": ""
+                }
+            },
+            {
+                "user": {
+                    "userId": "",
+                    "nickName": ""
+                }
+            }
+        ],
+        "date": "",
+        "status": ""
+    },
+    "ubicación": [
+        {
+            "departamentoId": "",
+            "nombre": "",
+            "municipios": [
+                {
+                    "id": "",
+                    "nombreMunicipio": ""
+                }
+            ]
+        }
+    ],
+    "reportes": {
+        "reportId": "",
+        "usuarioReporte": {
+            "userId": "",
+            "nickName": ""
+        },
+        "description": "",
+        "usuarioReportado": {
+            "userId": "",
+            "nickName": ""
+        },
+        "status": ""
+    },
+    "categorias": {
+        "id": "",
+        "nomrbe": ""
+    },
+    "noticias": {
+        "imageUrl": "",
+        "descripcion": "",
+        "fecha": ""
+    }
+}

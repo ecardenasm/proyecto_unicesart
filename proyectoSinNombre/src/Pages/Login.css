@@ -1,0 +1,195 @@
+.imagenFondo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.imagenFondo>img {
+    opacity: 0.9;
+    width: 100%;
+    margin: auto;
+    height: 796px;
+}
+
+.dialogo {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    height: 800px;
+    top: 100px;
+    width: 100%;
+    padding-bottom: 5px;
+    background: rgba(255, 255, 255, 0.75);
+    position: absolute;
+}
+
+.formulario {
+    margin-left: 8%;
+    padding: 3% 0%;
+    background: #ffffffca;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.field {
+    height: auto;
+    width: 360px;
+    flex-wrap: wrap;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+
+.field>input {
+    font-size: 20px;
+    background: transparent;
+    padding: 8px 5px 5px 3px;
+    width: 318px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #1d8348;
+}
+
+.field>select {
+    font-size: 18px;
+    width: 430px;
+    background: transparent;
+    padding: 8px 5px 5px 3px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #1d8348;
+}
+
+.field>i {
+    background-color: #1d8348;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    line-height: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.field>button {
+    margin-left: 2%;
+    margin-bottom: 10px;
+    padding: 8px 20px 8px 20px;
+    border-radius: 10px;
+    width: 93%;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+    background: #27ae5fd4;
+}
+
+.field>button:hover {
+    background-color: #1d8348;
+    cursor: pointer;
+    scale: 1.01;
+}
+
+.sinGoogle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.field>button img {
+    height: 25px;
+    margin-left: 8px;
+}
+
+.error-message{
+    margin: auto;
+    color: #656464;
+}
+
+.campo {
+    width: 470px;
+}
+
+.campo>input {
+    width: 420px;
+}
+
+.campo>button {
+    margin-left: 4%;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.campo>button img {
+    height: 30px;
+    margin-left: 8px;
+}
+
+.contribucion {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: left;
+    font-size: 15px;
+}
+
+@media screen and (max-width:800px) {
+
+    .imagenFondo {
+        height: 520px;
+    }
+
+    .dialogo {
+        top: 180px;
+        height: 522px;
+        align-items: flex-start;
+    }
+
+    .formulario {
+        padding-left: 0%;
+    }
+
+    .field>p {
+        font-size: 20px;
+    }
+
+    .field>input {
+        font-size: 15px;
+    }
+
+    .field>button {
+        font-size: 18px;
+    }
+
+    .field>button img {
+        height: 20px;
+        margin-left: 8px;
+    }
+
+    .campo {
+        width: 98%;
+    }
+
+    .campo>input {
+        font-size: 15px;
+    }
+
+    .campo>button {
+        color: #FFF;
+        font-size: 18px;
+    }
+
+    .campo>button img {
+        height: 20px;
+        margin-left: 8px;
+    }
+
+
+    .contribucion {
+        justify-content: center;
+    }
+
+}

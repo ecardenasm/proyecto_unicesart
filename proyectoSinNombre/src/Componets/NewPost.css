@@ -1,0 +1,188 @@
+/* Ejemplo de estilos para el componente NewPost */
+button {
+    background-color: #005187;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+/* Estilo para el botón flotante */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 110cv;
+    height: 100cv;
+    background-color: #1d8348;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.containerpost {
+    display: flex;
+    flex-direction: row;
+}
+
+.floating-button:hover {
+    background-color: #005187;
+    transform: scale(1.1);
+}
+
+.newpost button:hover {
+    background-color: #005187;
+    border: 3px solid lightskyblue;
+}
+
+.dialogPost {
+    border: 1px solid #ccc;
+    padding: 1%;
+    width: 75%;
+    border-radius: 15px;
+    opacity: 98%;
+    margin: auto;
+}
+
+.newpost dialog button {
+    color: white;
+    padding: 2% 3%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 25%;
+    margin-left: 1%;
+}
+
+.formPost {
+    flex-basis: 55%;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+}
+
+.formPost p {
+    width: 100cv;
+    margin-bottom: 1%;
+}
+
+.botones {
+    display: flex;
+    justify-content: right;
+    padding-right: 2%;
+}
+
+.newpost h3 {
+    font-size: 40px;
+    text-align: center;
+    padding: 1% 2%;
+    margin: 0% 1%;
+    font-weight: 600;
+    color: #1d8348;
+}
+
+
+.newpost form p label {
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+.sub {
+    display: flex;
+    flex-basis: 40%;
+    align-items: center;
+}
+
+.imageDiv {
+    display: flex;
+    border: 2px solid #1d8348;
+    border-style: dashed;
+    justify-content: left;
+    flex-direction: column;
+    margin: 1% 1%;
+    height: 100cv;
+    width: 100%;
+}
+
+.imageDiv img {
+    margin: 0.1% 0.5%;
+    width: 95%;
+    height: 270px;
+}
+
+.newpost input[type="text"] {
+    width: 95%;
+    padding: 1.5%;
+    margin-top: 1%;
+    border-radius: 5px;
+    border: 2px solid #1d8348;
+}
+
+.newpost textarea {
+    width: 95%;
+    height: 100cv;
+    padding: 2%;
+    border-radius: 5px;
+    border: 2px solid #1d8348;
+    margin-top: 0.5%;
+}
+
+.newpost input[type="number"] {
+    width: 95%;
+    padding: 1.5%;
+    margin-top: 1%;
+    border-radius: 5px;
+    border: 2px solid #1d8348;
+}
+
+.postCategoria {
+    font-size: 16px;
+    width: 98%;
+    padding: 1.5%;
+    margin-top: 1%;
+    border-radius: 5px;
+    border: 2px solid #1d8348;
+}
+
+.postCategoria option:hover{
+    background-color:#1d8348;
+}
+
+
+
+/* Estilo para el input de tipo file */
+.newpost input[type="file"] {
+    display: none;
+    /* Ocultar el botón de archivo */
+}
+
+/* Estilo para el enlace que simulará el botón de archivo */
+.file-link {
+    margin-top: 1%;
+    padding: 2%;
+    background-color: transparent;
+    /* Fondo transparente */
+    border: none;
+    /* Sin borde */
+    cursor: pointer;
+    /* Cambiar el cursor a puntero */
+    text-decoration: underline;
+    /* Subrayar para indicar que es un enlace */
+    color: blue;
+    /* Color del enlace */
+}
+
+/* Estilo para el texto dentro del enlace */
+.file-link span {
+    visibility: hidden;
+    /* Ocultar el texto */
+}
