@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { registerRequest } from "../API/auth";
+import { registerRequest, loginRequest, logoutRequest } from "../API/auth";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -57,9 +57,75 @@ export const AuthProvider =  ({ children }) => {
         }
     };
 
+    const singIn = async (user) =>{
+        try {
+            console.log(user);
+
+            // Realizar la solicitud de registro
+            const res = await loginRequest(user);
+
+            // Verificar si la respuesta es exitosa
+            if (res.status === 200) {
+                withReactContent(Swal).fire({
+                    title: "Credenciales Correctas",
+                    text: "¡Bienvenido de Nuevo!",
+                    icon: "success"
+                });
+                setUser(res.data);
+                setIsAuthenticated(true);
+            } else {
+                // Mostrar mensaje de advertencia si la respuesta no es exitosa
+                withReactContent(Swal).fire({
+                    title: "Advertencia",
+                    text: "No se han encontrado los datos: Usuario o contraseña incorrectos",
+                    icon: "warning"
+                });
+            }
+
+        } catch (error) {
+            console.error(error);
+            // Mostrar mensaje de error en caso de excepción
+            withReactContent(Swal).fire({
+                title: "Error",
+                text: error.response?.data?.message || "Error al registrar el usuario.",
+                icon: "error"
+            });
+            setUser(null);
+            setIsAuthenticated(false);
+            setErrors(error.response.data);
+        }
+    }
+
+    const logOut = async (user) => {
+        try {
+            
+            // Realizar la solicitud de registro
+            const res = await logoutRequest(user);
+
+            // Verificar si la respuesta es exitosa
+            if (res.status === 200) {
+                setIsAuthenticated(false);
+            } 
+
+        } catch (error) {
+            console.error(error);
+            // Mostrar mensaje de error en caso de excepción
+            withReactContent(Swal).fire({
+                title: "Error",
+                text: error.response?.data?.message || "Error al registrar el usuario.",
+                icon: "error"
+            });
+            setUser(null);
+            setIsAuthenticated(false);
+            setErrors(error.response.data);
+        }
+    }
+
     return (
         <AuthContext.Provider value={{
             singUp,
+            singIn,
+            logOut,
             user,
             isAuthenticated,
             errors,

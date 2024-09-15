@@ -1,24 +1,41 @@
+import { useState } from 'react';
 
 const PersonalInfo = () => {
+    const [isEditable, setIsEditable] = useState(false);
+
+    const handleEdit = () => {
+        setIsEditable(true);
+    };
+
+    const handleSave = () => {
+        // Aquí puedes añadir lógica para guardar los datos
+        setIsEditable(false);
+    };
 
     return (
         <section className="informacionPersonal">
+            <p>Nombre</p>
+            <input type="text" disabled={!isEditable} />
+            <p>Fecha Nacimiento</p>
+            <input type="text" disabled={!isEditable} />
+            <p>Género</p>
+            <input type="text" disabled={!isEditable} />
             <p>Ciudad de Origen</p>
-            <input type="text" name="" id="" />
+            <input type="text" disabled={!isEditable} />
             <p>Carrera</p>
-            <input type="text" name="" id="" />
+            <input type="text" disabled={!isEditable} />
             <p>Habilidades</p>
-            <textarea name="" id=""></textarea>
-            <p>Descripcion</p>
-            <textarea name="" id=""></textarea>
-            <p style={{marginTop:'8px', marginBottom:'5px'}}>Contacto</p>
-            <p>Telefono</p>
-            <input type="text" name="" id="" />
+            <textarea disabled={!isEditable}></textarea>
+            <p>Descripción</p>
+            <textarea disabled={!isEditable}></textarea>
+            <p style={{ marginTop: '8px', marginBottom: '5px' }}>Contacto</p>
+            <p>Teléfono</p>
+            <input type="text" disabled={!isEditable} />
             <p>Email</p>
-            <input type="text" name="" id="" />
+            <input type="text" disabled={!isEditable} />
             <div>
-                <button>Editar</button>
-                <button>Guardar</button>
+                <button onClick={handleEdit} disabled={isEditable}>Editar</button>
+                <button onClick={handleSave} disabled={!isEditable}>Guardar</button>
             </div>
         </section>
     );

@@ -11,6 +11,13 @@
     height: 796px;
 }
 
+.recuperacion{
+    height: 700px;
+    padding-left: 30%;
+    padding-top: 2%;
+    background: #156436;
+}
+
 .dialogo {
     flex-direction: column;
     display: flex;

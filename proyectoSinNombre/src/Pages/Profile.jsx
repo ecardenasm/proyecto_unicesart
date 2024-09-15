@@ -1,9 +1,10 @@
 import Post from '../Componets/Post.jsx';
 import './Profile.css'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const Profile = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const dialogReportRef = useRef(null);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -16,6 +17,20 @@ const Profile = () => {
         setIsOpen(false);
     };
 
+    const autoResize = (e) => {
+        e.target.style.height = 'auto'; // Resetea la altura
+        e.target.style.height = e.target.scrollHeight + 'px'; // Establece la altura basada en el scrollHeight
+    }
+
+    const showDialog = () => {
+        if (dialogReportRef.current) {
+            if (!dialogReportRef.current.open) {
+                dialogReportRef.current.showModal();
+            } else {
+                dialogReportRef.current.close();
+            }
+        }
+    };
     return (
         <>
             <div className="main">
@@ -35,7 +50,7 @@ const Profile = () => {
                                 <li className="report-item" onClick={() => handleReport('Contenido inapropiado')}>
                                     <i className="fa-solid fa-ban" ></i>Suspender Usuario
                                 </li>
-                                <li className="report-item" onClick={() => handleReport('Spam')}>
+                                <li className="report-item" onClick={showDialog}>
                                     <i className="fa-solid fa-flag"></i>Reportar Usuario
                                 </li>
                                 <li className="report-item" onClick={() => handleReport('Otro')}>Otro</li>
@@ -44,6 +59,49 @@ const Profile = () => {
                                 </li>
                             </ul>
                         )}
+
+                        <dialog ref={dialogReportRef} className="dialogPost dialogReport">
+                            <h3>Reportar</h3>
+                            <div className="sub">
+                                <form method="dialog" className="formPost">
+                                    <p>Selecciona un motivo:</p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="motivo" value="spam" />
+                                            Spam
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="motivo" value="contenido_inapropiado" />
+                                            Contenido inapropiado
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="motivo" value="acoso" />
+                                            Acoso
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" name="motivo" value="otro" />
+                                            Otro
+                                        </label>
+                                    </p>
+
+                                    <p>
+                                        <label>Descripción (Opcional):</label>
+                                        <textarea name="descripcion" id="descripcion" onChange={autoResize}></textarea>
+                                    </p>
+                                </form>
+                            </div>
+
+                            <div className="botones">
+                                <button style={{ background: '#1d8348' }} onClick={showDialog}>Reportar</button>
+                                <button style={{ background: '#DE2D18' }} onClick={showDialog}>Cancelar</button>
+                            </div>
+                        </dialog>
                     </section>
                     <section className="mycontent">
                         <div className="skills">

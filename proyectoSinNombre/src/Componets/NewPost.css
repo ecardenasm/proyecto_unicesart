@@ -53,6 +53,14 @@ button {
     margin: auto;
 }
 
+.dialogReport{
+    width: 400px;
+}
+
+.dialogPost input{
+    margin: 10px 0px;
+}
+
 .newpost dialog button {
     color: white;
     padding: 2% 3%;

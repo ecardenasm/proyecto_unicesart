@@ -39,7 +39,13 @@ export const register = async (req, res) => {
             res.cookie('token', token);
             return res.json({
                 id: savedUser._id,
+                username: savedUser.username,
                 email: savedUser.email,
+                createdAt: savedUser.createdAt,
+                updatedAt: savedUser.updatedAt,
+                persona: {
+                    fullName: savedPersona.fullName,
+                }
             });
         }
     } catch (error) {
