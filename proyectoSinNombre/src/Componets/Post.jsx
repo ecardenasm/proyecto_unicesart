@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import PropTypes from 'prop-types';
 import './Post.css';
 
-const Post = ({ imagen }) => {
+const Post = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const dialogReportRef = useRef(null); // Cambiamos a useRef en lugar de useState
+    const dialogReportRef = useRef(null);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -14,15 +14,17 @@ const Post = ({ imagen }) => {
     const autoResize = (e) => {
         e.target.style.height = 'auto'; // Resetea la altura
         e.target.style.height = e.target.scrollHeight + 'px'; // Establece la altura basada en el scrollHeight
-    }
+    };
 
-    const showDialog = () => {
-        if (dialogReportRef.current) {
-            if (!dialogReportRef.current.open) {
-                dialogReportRef.current.showModal();
-            } else {
-                dialogReportRef.current.close();
-            }
+    const openDialog = () => {
+        if (dialogReportRef.current && !dialogReportRef.current.open) {
+            dialogReportRef.current.showModal();
+        }
+    };
+
+    const closeDialog = () => {
+        if (dialogReportRef.current && dialogReportRef.current.open) {
+            dialogReportRef.current.close();
         }
     };
 
@@ -31,12 +33,26 @@ const Post = ({ imagen }) => {
         setIsOpen(false);
     };
 
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (isOpen && !event.target.closest('.report-dropdown')) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [isOpen]);
+
     return (
         <div className="post">
             <div className="post-top">
                 <div className="userInfo">
                     <i className="fa-solid fa-user"></i>
-                    <p><Link to={"/profile"}>Usuario</Link></p>
+                    <p><Link to={`/profile/${post.user.userName}`}>{post.user.userName}</Link></p>
                 </div>
                 <div className="report-dropdown">
                     <button className="report-button" onClick={toggleMenu}>
@@ -45,7 +61,7 @@ const Post = ({ imagen }) => {
                 </div>
                 {isOpen && (
                     <ul className="report-menu">
-                        <li className="report-item" onClick={showDialog}>
+                        <li className="report-item" onClick={openDialog}>
                             <i className="fa-solid fa-flag"></i> Contenido inapropiado
                         </li>
                         <li className="report-item" onClick={() => handleReport('Spam')}>
@@ -100,24 +116,22 @@ const Post = ({ imagen }) => {
                 </div>
 
                 <div className="botones">
-                    <button style={{ background: '#1d8348' }} onClick={showDialog}>Reportar</button>
-                    <button style={{ background: '#DE2D18' }} onClick={showDialog}>Cancelar</button>
+                    <button style={{ background: '#1d8348' }} onClick={closeDialog}>Reportar</button>
+                    <button style={{ background: '#DE2D18' }} onClick={closeDialog}>Cancelar</button>
                 </div>
             </dialog>
 
-
             <div className="publicacion">
-                <img src={imagen} alt="Post" />
+                <img src={post.imageUrl} alt={post.title} />
                 <div className="publicacion contenido">
                     <div className="descripcion">
                         <div className="reseña">
-                            <p>Título:</p>
+                            <p>Título: {post.title}</p>
                             <p>Descripción: <br />
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe hic nihil facilis quibusdam debitis impedit doloribus aspernatur amet eos. Expedita?</span>
+                                <span>{post.description}</span>
                             </p>
                             <div style={{ marginTop: '20px' }}>
-                                <p>Categoría:</p>
-                                <p style={{ marginTop: '10px' }}>Técnica Utilizada:</p>
+                                <p>Categoría: {post.category}</p>
                             </div>
                         </div>
                     </div>
@@ -132,10 +146,19 @@ const Post = ({ imagen }) => {
             </div>
         </div>
     );
-}
+};
 
 Post.propTypes = {
-    imagen: PropTypes.string.isRequired,
+    post: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string,
+        category: PropTypes.string,
+        imageUrl: PropTypes.string, // Cambia esto a 'imageUrl' en lugar de 'imagen'
+        user: PropTypes.shape({
+            userName: PropTypes.string.isRequired // Cambia 'username' a 'userName'
+        }).isRequired
+    }).isRequired,
 };
+
 
 export default Post;

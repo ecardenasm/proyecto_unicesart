@@ -1,26 +1,45 @@
+import { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import Post from '../Componets/Post.jsx';
-import './Profile.css'
-import { useState, useRef } from 'react';
+import './Profile.css';
+import { useAuth } from '../context/AuthContext.jsx';
 
 const Profile = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dialogReportRef = useRef(null);
+    const { user: loggedInUser, getUserProfile } = useAuth(); // Usuario autenticado
+    const { username } = useParams(); // Obtener el username de la URL
+    const [profileUser, setProfileUser] = useState(null); // Usuario del perfil
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => { 
+        const fetchUserProfile = async () => {
+            try {
+                const response = await getUserProfile(username); // No necesitas response.json() con axios
+                setProfileUser(response);
+                console.log(profileUser); // Accede a los datos con response.data
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchUserProfile();
+    },[]);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     const handleReport = (option) => {
-        // Aquí manejarías la lógica para reportar la publicación
         console.log(`Reportado por: ${option}`);
-        // Cierra el menú después de seleccionar una opción
         setIsOpen(false);
     };
 
     const autoResize = (e) => {
-        e.target.style.height = 'auto'; // Resetea la altura
-        e.target.style.height = e.target.scrollHeight + 'px'; // Establece la altura basada en el scrollHeight
-    }
+        e.target.style.height = 'auto';
+        e.target.style.height = e.target.scrollHeight + 'px';
+    };
 
     const showDialog = () => {
         if (dialogReportRef.current) {
@@ -31,6 +50,15 @@ const Profile = () => {
             }
         }
     };
+
+    if (loading) {
+        return <div>Cargando perfil...</div>; // Mostrar cargando mientras se obtienen los datos
+    }
+
+    if (!profileUser) {
+        return <div>No se encontró el perfil del usuario.</div>; // Mostrar mensaje si no se encuentra el usuario
+    }
+
     return (
         <>
             <div className="main">
@@ -38,17 +66,19 @@ const Profile = () => {
                     <section className="aboutme">
                         <div>
                             <img src="src/assets/user.png" alt="fotoPerfil" />
-                            <p>Nombre de Usuario</p>
+                            <p>{profileUser.fullName ?? 'N/A'}</p>
                         </div>
-                        <div style={{ width: '10%', marginLeft: '90%' }} className="report-dropdown" >
-                            <button className="report-button" onClick={toggleMenu}>
-                                <i style={{ fontSize: '35px', overflowY: 'hidden' }} className="fa-solid fa-ellipsis-vertical"></i>
-                            </button>
-                        </div>
+                        {loggedInUser?.userName !== profileUser.userName && ( // Solo mostrar opciones si el usuario autenticado no es el dueño del perfil
+                            <div style={{ width: '10%', marginLeft: '90%' }} className="report-dropdown">
+                                <button className="report-button" onClick={toggleMenu}>
+                                    <i style={{ fontSize: '35px', overflowY: 'hidden' }} className="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                            </div>
+                        )}
                         {isOpen && (
                             <ul className="report-menu2">
                                 <li className="report-item" onClick={() => handleReport('Contenido inapropiado')}>
-                                    <i className="fa-solid fa-ban" ></i>Suspender Usuario
+                                    <i className="fa-solid fa-ban"></i>Suspender Usuario
                                 </li>
                                 <li className="report-item" onClick={showDialog}>
                                     <i className="fa-solid fa-flag"></i>Reportar Usuario
@@ -103,44 +133,42 @@ const Profile = () => {
                             </div>
                         </dialog>
                     </section>
+
                     <section className="mycontent">
                         <div className="skills">
                             <div className="cloud" style={{ border: '3px solid #2ecc71' }}>
-                                <p>Informacion Personal</p>
+                                <p>Información Personal</p>
                                 <div>
-                                    <p>Edad: 21 Años</p>
-                                    <p>Ciudad Origen: Valledupar, César</p>
-                                    <p>Carrera: Lic. Arte</p>
-                                </div>
-                            </div>
-                            <div className="cloud" style={{ border: '3px solid #27ae60' }} >
-                                <p>Hablididades</p>
-                                <div>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro iste maxime eaque quas debitis? Quaerat, adipisci porro, perferendis repellendus nesciunt necessitatibus, rem dignissimos doloremque quis quia veritatis soluta voluptate quisquam voluptas aliquam. Atque error aperiam praesentium veniam velit sed odio iusto sunt porro? Et vitae nesciunt soluta dolore aspernatur voluptate!</p>
+                                    <p>Edad: {profileUser.edad ?? 'N/A'} Años</p>
+                                    <p>Fecha de Nacimiento: {profileUser.birthDate ?? 'N/A'}</p>
+                                    <p>Ciudad Origen: {profileUser.lugarOrigen?.nombreMunicipio ?? 'N/A'}, {profileUser.lugarOrigen?.nombreDepartamento ?? 'N/A'}</p>
+                                    <p>Carrera: {profileUser.profession ?? 'N/A'}</p>
                                 </div>
                             </div>
                             <div className="cloud" style={{ border: '3px solid #27ae60' }}>
-                                <p>Descripcion</p>
+                                <p>Habilidades</p>
                                 <div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quod sunt dolorum voluptates culpa, repudiandae maiores rerum earum et dolore veritatis recusandae saepe ipsa obcaecati esse, consequatur explicabo tempore in, similique perspiciatis itaque. Et eaque labore laudantium doloremque provident cumque.</p>
+                                    <p>{profileUser.skills ?? 'No se han agregado habilidades'}</p>
+                                </div>
+                            </div>
+                            <div className="cloud" style={{ border: '3px solid #27ae60' }}>
+                                <p>Descripción</p>
+                                <div>
+                                    <p>{profileUser.description ?? 'El usuario no ha agregado una descripción'}</p>
                                 </div>
                             </div>
                             <div className="cloud" style={{ border: '3px solid #2ecc71' }}>
                                 <p>Contacto</p>
                                 <div>
-                                    <p>Email: example@unicesar.edu.co</p>
-                                    <p>Telefono: +57 300-456-3300</p>
+                                    <p>Email: {profileUser.email ?? 'N/A'}</p>
+                                    <p>Teléfono: {profileUser.phone ?? 'N/A'}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="myPost">
                             <h2>Trabajos destacados</h2>
                             <div>
-                                <Post />
-                                <Post />
-                                <Post />
-                                <Post />
-                                <Post />
+                                {/** Aquí irían los posts del usuario, puedes hacer otra solicitud para obtenerlos */}
                             </div>
                         </div>
                     </section>
@@ -148,6 +176,6 @@ const Profile = () => {
             </div>
         </>
     );
-}
+};
 
 export default Profile;

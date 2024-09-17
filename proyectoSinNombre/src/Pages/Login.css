@@ -11,7 +11,7 @@
     height: 796px;
 }
 
-.recuperacion{
+.recuperacion {
     height: 700px;
     padding-left: 30%;
     padding-top: 2%;
@@ -38,6 +38,21 @@
     border-radius: 15px;
 }
 
+.formularioRegister {
+    width: 920px;
+    margin-left: 4%;
+}
+
+.camposRegister {
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: start;
+    flex-wrap: wrap;
+    width: 920px;
+}
+
 .field {
     height: auto;
     width: 360px;
@@ -62,7 +77,7 @@
 
 .field>select {
     font-size: 18px;
-    width: 430px;
+    width: 410px;
     background: transparent;
     padding: 8px 5px 5px 3px;
     border-top-right-radius: 10px;
@@ -111,23 +126,36 @@
     margin-left: 8px;
 }
 
-.error-message{
+.error-message {
     margin: auto;
     color: #656464;
 }
 
 .campo {
-    width: 470px;
+    width: 450px;
+    margin: 5px 0px;
+    align-items: flex-start;
 }
 
 .campo>input {
-    width: 420px;
+    width: 400px;
 }
 
 .campo>button {
     margin-left: 4%;
     margin-top: 10px;
     margin-bottom: 2px;
+}
+
+.campo>textarea {
+    font-size: 20px;
+    background: transparent;
+    padding: 1px 1px 1px 2px;
+    height: 34px;
+    width: 407px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #1d8348;
 }
 
 .campo>button img {
