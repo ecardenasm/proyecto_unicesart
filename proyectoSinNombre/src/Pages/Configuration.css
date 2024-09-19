@@ -6,7 +6,7 @@
 }
 
 .options {
-    width: 28%;
+    width: 30%;
     margin: 1.5% 0.5%;
     border-right: 2px solid #858585;
     border-bottom: 2px solid #858585;
@@ -25,6 +25,13 @@
     border-bottom: 1px solid #858585;
     box-shadow: 0px 2px 2px #3232323f;
     color: #1c1c1c;
+    display: flex;
+    flex-direction: row;
+}
+
+.option i {
+    color: #000;
+    display: none;
 }
 
 .option.active {
@@ -40,13 +47,6 @@
 .option:hover {
     background: #b6b6b68a;
     color: #000;
-}
-
-.option a {
-    display: block;
-    width: 100%;
-    color: #1c1c1c;
-    text-decoration: none;
 }
 
 .contenido-opcion {
@@ -93,7 +93,7 @@
     background: #1d8348;
 }
 
-.cambioContrasena>button:hover{
+.cambioContrasena>button:hover {
     box-shadow: 3px 2px 5px #33be6d;
 }
 
@@ -117,7 +117,7 @@
     border: 1px solid #1d8348;
 }
 
-.informacionPersonal select{
+.informacionPersonal select {
     width: 350px;
     font-size: 18px;
     padding: 2px 4px 1px 3px;
@@ -148,7 +148,83 @@
     background: #1d8348;
 }
 
-.informacionPersonal>div button:hover{
+.informacionPersonal>div button:hover {
     box-shadow: 3px 2px 5px #33be6d;
 }
 
+.deployOption {
+    display: none;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translateY(-5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    .configuration {
+        height: 850px;
+    }
+
+    .contenido-opcion {
+        display: none;
+    }
+
+    .options {
+        width: 100%;
+    }
+
+    .option p {
+        display: block;
+        width: 90%;
+    }
+
+    .option i {
+        display: block;
+        width: 10%;
+        line-height: 40px;
+    }
+
+    .deployOption {
+        display: block;
+        animation: fadeInOut 1s ease-in;
+        /* Asignar la animación */
+    }
+
+    .cambioContrasena input {
+        width: 95%;
+    }
+
+    .cambioContrasena button {
+        width: 95%;
+    }
+
+    .informacionPersonal div {
+        width: 100%;
+    }
+
+    .informacionPersonal div button {
+        width: 35%;
+    }
+
+    .informacionPersonal textarea {
+        width: 92%;
+    }
+
+    .informacionPersonal input {
+        width: 93%;
+    }
+}

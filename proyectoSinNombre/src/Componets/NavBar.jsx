@@ -42,6 +42,9 @@ const NavBar = () => {
                                     </ul>
                                 </div>
                             </div>
+                            <div className="hamburguesa">
+
+                            </div>
                         </>
                     ) : (
                         // Autenticado
@@ -56,14 +59,32 @@ const NavBar = () => {
                             </div>
                             <div className="enlaces-dash">
                                 <ul>
-                                    <li><Link to="/home"><i className="fa-solid fa-house"></i> Inicio</Link></li>
-                                    <li><Link to="/configuration"><i className="fa-solid fa-gear"></i> Configuración</Link></li>
+                                    <li>
+                                        <Link to="/home"><div>
+                                            <i className="fa-solid fa-house"></i>
+                                            <p>Inicio</p></div>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/configuration">
+                                            <div>
+                                                <i className="fa-solid fa-gear"></i>
+                                                <p>Configuración</p>
+                                            </div>
+                                        </Link>
+                                    </li>
                                     <li>
                                         <button onClick={handleLogOut} style={{ background: '#fff', color: '#000' }}>
-                                            <i className="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                                            <div>
+                                                <i className="fa-solid fa-right-from-bracket"></i>
+                                                <p>Cerrar Sesión</p>
+                                            </div>
                                         </button>
                                     </li>
                                 </ul>
+                            </div>
+                            <div className="hamburguesa">
+                                
                             </div>
                         </>
                     )}

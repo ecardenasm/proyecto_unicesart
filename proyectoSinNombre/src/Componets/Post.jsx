@@ -2,10 +2,24 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import PropTypes from 'prop-types';
 import './Post.css';
+import { useAuth } from '../context/AuthContext';
+import { usePost } from '../context/PostContext';
 
 const Post = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dialogReportRef = useRef(null);
+    const { user } = useAuth();
+    const { putReaction } = usePost();
+    const [liked, setLiked] = useState(false);  // Corregido el uso de useState
+
+    useEffect(() => {
+        const userIndex = post.likes.findIndex(
+            like => like.user.userId.toString() === user?.id
+        );
+        if (userIndex > -1) {
+            setLiked(true);
+        }
+    }, [post.likes, user?.id]);  // Aseguramos que el efecto se ejecute solo cuando cambian los likes o el user.id
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -46,6 +60,20 @@ const Post = ({ post }) => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
     }, [isOpen]);
+
+    const handleReaction = (e) => {
+        e.preventDefault();
+
+        putReaction({
+            _id: post._id,
+            user: {
+                userId: user.id, // Asegúrate de que user.id está disponible y correcto
+                userName: user.username
+            }
+        });
+
+        setLiked(!liked);  // Cambiamos el estado de liked tras la reacción
+    };
 
     return (
         <div className="post">
@@ -135,10 +163,10 @@ const Post = ({ post }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="reaccion">
+                    <div onClick={handleReaction} style={{ cursor: 'pointer' }} className="reaccion">
                         <p>
-                            <span>x</span>
-                            <i className="fa-regular fa-heart"></i>
+                            <span>{post.likesCount}</span>
+                            {liked ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}
                             <span>Me encanta</span>
                         </p>
                     </div>
@@ -150,15 +178,25 @@ const Post = ({ post }) => {
 
 Post.propTypes = {
     post: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string,
         category: PropTypes.string,
-        imageUrl: PropTypes.string, // Cambia esto a 'imageUrl' en lugar de 'imagen'
+        imageUrl: PropTypes.string.isRequired, // Cambia esto a 'imageUrl' en lugar de 'imagen'
         user: PropTypes.shape({
             userName: PropTypes.string.isRequired // Cambia 'username' a 'userName'
-        }).isRequired
+        }).isRequired,
+        likesCount: PropTypes.number.isRequired,
+        likes: PropTypes.arrayOf(
+            PropTypes.shape({
+                user: PropTypes.shape({
+                    userId: PropTypes.string.isRequired,
+                    userName: PropTypes.string,
+                }).isRequired,
+                _id: PropTypes.string
+            })
+        ).isRequired,
     }).isRequired,
 };
-
 
 export default Post;

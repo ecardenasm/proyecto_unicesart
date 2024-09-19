@@ -55,16 +55,18 @@ const PersonalInfo = () => {
                 <input
                     type="date"
                     disabled={!isEditable}
+                    defaultValue={user?.birthDate ? user.birthDate.split('T')[0] : ''}
                     {...register("birthDate", { required: "Fecha de nacimiento es requerida" })}
                 />
                 {errors.birthDate && <span>{errors.birthDate.message}</span>}
+
 
                 <p>Género</p>
                 <select
                     disabled={!isEditable}
                     {...register("gender", { required: "Género es requerido" })}
                 >
-                    <option value="" disabled selected>{user?.gender ?? 'Selecciona tu género'}</option>
+                    <option value={user?.gender ?? ''} disabled selected>{user?.gender ?? 'Selecciona tu género'}</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
                     <option value="Otro">Prefiero no decirlo</option>
@@ -81,7 +83,7 @@ const PersonalInfo = () => {
                             onChange={(e) => setSelectedDepartamento(e.target.value)}
                             disabled={!isEditable}
                         >
-                            <option value="" disabled>{user?.lugarOrigen?.nombreDepartamento ?? 'Selecciona un Departamento'}</option>
+                            <option value={user?.lugarOrigen?.nombreDepartamento ?? ''} disabled>{user?.lugarOrigen?.nombreDepartamento ?? 'Selecciona un Departamento'}</option>
                             {departamentos.map((ubicacion) => (
                                 <option key={ubicacion.departamentoId} value={ubicacion.nombre}>
                                     {ubicacion.nombre}
@@ -94,7 +96,7 @@ const PersonalInfo = () => {
                             {...register("city.municipio", { required: "El municipio es requerido" })}
                             disabled={!isEditable}
                         >
-                            <option value="" disabled>{user?.lugarOrigen?.nombreMunicipio ?? 'Selecciona un Municipio'}</option>
+                            <option value={user?.lugarOrigen?.nombreMunicipio ?? ''} disabled>{user?.lugarOrigen?.nombreMunicipio ?? 'Selecciona un Municipio'}</option>
                             {municipios.map((municipio) => (
                                 <option key={municipio.id} value={municipio.nombreMunicipio}>
                                     {municipio.nombreMunicipio}

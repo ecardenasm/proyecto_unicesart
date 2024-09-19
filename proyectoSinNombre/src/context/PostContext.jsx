@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { getCategoriasRequest } from "../API/recursos.js";
-import { createPostRequest, getPostRequest } from "../API/post.js"
+import { createPostRequest, getPostRequest, reactionRequest } from "../API/post.js"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -89,13 +89,30 @@ export const PostProvider = ({ children }) => {
             setErrors(error.response.data);
         }
     }
+
+    const putReaction = async (reaction) => {
+        try {
+            const res = await reactionRequest(reaction);
+
+            if (res.status === 200) {
+                // Mostrar mensaje de advertencia si la respuesta no es exitosa
+                console.log(res.status);
+            }
+
+        } catch (error) {
+            console.log(error);
+            setErrors(error.response.data);
+        }
+    }
+
     return (
         <PostContext.Provider value={{
             categorias,
             errors,
+            publicaciones,
             createPost,
             getPost,
-            publicaciones
+            putReaction,
         }}>
             {children}
         </PostContext.Provider>
