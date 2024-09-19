@@ -67,7 +67,6 @@ const Register = () => {
                                 <div className="field campo">
                                     <i className="fa-solid fa-calendar-days"></i>
                                     <input
-                                        style={{ marginTop: '0px', marginBottom: '0px', fontSize: '18px' }}
                                         type="date"
                                         {...register("birthDate", {
                                             required: "Fecha de nacimiento es requerida",
@@ -164,25 +163,28 @@ const Register = () => {
                                 <div className="field campo">
                                     {departamentos.length > 0 && (
                                         <>
-                                            <i className="fa-solid fa-location-dot"></i>
-                                            <select {...register("city.departamento", { required: "El departamento es requerido" })} value={selectedDepartamento} onChange={(e) => setSelectedDepartamento(e.target.value)}>
-                                                <option value="" disabled>Departamento</option>
-                                                {departamentos.map((ubicacion) => (
-                                                    <option key={ubicacion.departamentoId} value={ubicacion.nombre}>
-                                                        {ubicacion.nombre}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <div style={{ height: '5px', width: '430px' }}></div>
-                                            <i className="fa-solid fa-city"></i>
-                                            <select {...register("city.municipio", { required: "El municipio es requerido" })}>
-                                                <option value="" disabled>Municipio</option>
-                                                {municipios.map((municipio) => (
-                                                    <option key={municipio.id} value={municipio.nombreMunicipio}>
-                                                        {municipio.nombreMunicipio}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                            <div>
+                                                <i className="fa-solid fa-location-dot"></i>
+                                                <select {...register("city.departamento", { required: "El departamento es requerido" })} value={selectedDepartamento} onChange={(e) => setSelectedDepartamento(e.target.value)}>
+                                                    <option value="" disabled>Departamento</option>
+                                                    {departamentos.map((ubicacion) => (
+                                                        <option key={ubicacion.departamentoId} value={ubicacion.nombre}>
+                                                            {ubicacion.nombre}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <i className="fa-solid fa-city"></i>
+                                                <select {...register("city.municipio", { required: "El municipio es requerido" })}>
+                                                    <option value="" disabled>Municipio</option>
+                                                    {municipios.map((municipio) => (
+                                                        <option key={municipio.id} value={municipio.nombreMunicipio}>
+                                                            {municipio.nombreMunicipio}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
                                         </>
                                     )}
                                     {errors.city?.departamento && <span className="error-message">{errors.city.departamento.message}</span>}

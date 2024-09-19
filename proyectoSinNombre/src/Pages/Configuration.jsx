@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './Configuration.css';
 import { useState } from 'react';
 import CambioContrasena from '../Componets/CambioContrasena';
@@ -9,7 +8,12 @@ const Configuration = () => {
     const [activeOption, setActiveOption] = useState(null);
 
     const handleOptionClick = (option) => {
-        setActiveOption(option);
+        if (option == activeOption) {
+            setActiveOption(null);
+        } else {
+            setActiveOption(option);
+        }
+
     };
 
     return (
@@ -20,26 +24,52 @@ const Configuration = () => {
                         className={`option ${activeOption === 'option1' ? 'active' : ''}`}
                         onClick={() => handleOptionClick('option1')}
                     >
-                        <p><Link to="#">Cambiar Contraseña</Link></p>
+                        <p>Cambiar Contraseña</p>
+                        {activeOption === 'option1' ?
+                            (<i className="fa-solid fa-angle-up"></i>) : (<i className="fa-solid fa-angle-down"></i>)}
                     </div>
+                    {activeOption === 'option1' &&
+                        (<div className="deployOption">
+                            <CambioContrasena />
+                        </div>)}
                     <div
                         className={`option ${activeOption === 'option2' ? 'active' : ''}`}
                         onClick={() => handleOptionClick('option2')}
                     >
-                        <p><Link to="#">Eliminar Cuenta</Link></p>
+                        <p>Eliminar Cuenta</p>
+
+                        {activeOption === 'option2' ?
+                            (<i className="fa-solid fa-angle-up"></i>) : (<i className="fa-solid fa-angle-down"></i>)}
                     </div>
+                    {activeOption === 'option2' &&
+                        (<div className="deployOption">
+                            <EliminarCuenta />
+                        </div>)}
                     <div
                         className={`option ${activeOption === 'option3' ? 'active' : ''}`}
                         onClick={() => handleOptionClick('option3')}
                     >
-                        <p><Link to="#">Actualizar Información Personal</Link></p>
+                        <p>Actualizar Información Personal</p>
+
+                        {activeOption === 'option3' ?
+                            (<i className="fa-solid fa-angle-up"></i>) : (<i className="fa-solid fa-angle-down"></i>)}
                     </div>
+                    {activeOption === 'option3' &&
+                        (<div className="deployOption">
+                            <PersonalInfo />
+                        </div>)}
                     <div
                         className={`option ${activeOption === 'option4' ? 'active' : ''}`}
                         onClick={() => handleOptionClick('option4')}
                     >
-                        <p><Link to="#">Reportes</Link></p>
+                        <p>Reportes</p>
+                        {activeOption === 'option4' ?
+                            (<i className="fa-solid fa-angle-up"></i>) : (<i className="fa-solid fa-angle-down"></i>)}
                     </div>
+                    {activeOption === 'option4' &&
+                        (<div className="deployOption">
+                            <h1>Reportes</h1>
+                        </div>)}
                 </div>
                 <div className="contenido-opcion">
                     {activeOption === 'option1' && <CambioContrasena />}

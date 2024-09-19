@@ -11,7 +11,7 @@
     height: 310px;
 }
 
-.post-top{
+.post-top {
     height: auto;
     width: 100%;
     display: flex;
@@ -129,12 +129,12 @@
 .report-dropdown {
     position: relative;
     display: inline-block;
-    width: 5%; 
+    width: 5%;
     text-align: center;
     overflow-y: hidden;
 }
 
-.report-button:hover{
+.report-button:hover {
     background: #bcbcbc33;
 }
 
@@ -142,7 +142,7 @@
 .report-button {
     padding: 2px 5px;
     cursor: pointer;
-    background:unset;
+    background: unset;
     color: #000;
     font-size: 14px;
     height: auto;
@@ -169,7 +169,7 @@
     align-items: center;
 }
 
-.report-item i{
+.report-item i {
     margin-right: 5px;
 }
 
@@ -180,4 +180,34 @@
 /* Efecto hover para los elementos del menú */
 .report-item:hover {
     background-color: #f1f1f1;
+}
+
+@media screen and (max-width:500px) {
+
+    .userInfo>p {
+        font-size: 20px;
+        margin-left: 1%;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .post {
+        width: 98% !important;
+    }
+
+    .userInfo>p {
+        font-size: 20px;
+        margin-left: 1%;
+    }
+}
+
+@media screen and (max-width:1050px) {
+    .post {
+        width: 47%;
+    }
+
+    .userInfo>p {
+        font-size: 20px;
+        margin-left: 1%;
+    }
 }
