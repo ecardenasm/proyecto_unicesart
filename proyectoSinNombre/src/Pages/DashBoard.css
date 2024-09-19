@@ -31,7 +31,7 @@
 
 /*advertising*/
 
-.add{
+.add {
     margin: 2% 1%;
     display: flex;
     flex-direction: column;
@@ -39,16 +39,16 @@
     border-radius: 10px;
 }
 
-.add>img{
+.add>img {
     height: 150px;
     width: 100%;
 }
 
-.add>span{
+.add>span {
     padding-left: 8px;
 }
 
-.add>span:hover{
+.add>span:hover {
     background-color: #000;
     color: #fff;
     text-align: right;
@@ -56,12 +56,59 @@
     transition: background-color 0.4s, transform 0.6s;
 }
 
-.icon{
+.icon {
     line-height: 15px;
     color: #eff4ffe5;
 }
 
-.icon:hover{
+.icon:hover {
     color: #fff;
 }
 
+@media screen and (max-width:500px) {
+    .dashboard {
+        flex-direction: column-reverse;
+    }
+
+    .rightContent {
+        width: 100% !important;
+    }
+
+    .mainContent {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .dashboard {
+        flex-direction: column-reverse;
+    }
+
+
+    .rightContent {
+        width: 80% ;
+    }
+
+    .mainContent {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width:1050px) {
+    .dashboard {
+        flex-direction: column-reverse;
+    }
+
+    .rightContent {
+        width: 70%;
+        margin: auto;
+
+    }
+
+    .mainContent {
+        width: 100%;
+        height: auto;
+    }
+}

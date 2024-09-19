@@ -1,6 +1,12 @@
 import './Home.css'
+import Aos from 'aos';
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
 
 const Welcome = () => {
+    useEffect(()=>{
+        Aos.init();
+    })
 
     return (
         <div className='Father'>
@@ -9,14 +15,14 @@ const Welcome = () => {
                 <div className="onSamples">
                     <div className="container">
                         <div className="contenido">
-                            <h2>Bienvenido a UnicesArt</h2>
-                            <span>Un espacio creado para compartir el arte estudiantil en imágenes y videos.</span>
+                            <h2 data-aos="fade-down" data-aos-duration="2000">Bienvenido a UnicesArt</h2>
+                            <span data-aos="fade-up" data-aos-duration="2000">Un espacio creado para compartir el arte estudiantil en imágenes y videos.</span>
                             <hr />
                             <div className="imagenes">
-                                <img src="src/assets/imagen1.jpeg" alt="img" />
-                                <img src="src/assets/imagen2.jpg" alt="img" />
-                                <img src="src/assets/imagen3.jpeg" alt="img" />
-                                <img src="src/assets/imagen4.jpeg" alt="img" />
+                                <img data-aos="flip-left" data-aos-duration="3000" src="src/assets/imagen1.jpeg" alt="img" />
+                                <img data-aos="flip-right" data-aos-duration="3000" src="src/assets/imagen2.jpg" alt="img" />
+                                <img data-aos="flip-left" data-aos-duration="3000" src="src/assets/imagen3.jpeg" alt="img" />
+                                <img data-aos="flip-right" data-aos-duration="3000" src="src/assets/imagen4.jpeg" alt="img" />
                             </div>
                         </div>
                     </div>

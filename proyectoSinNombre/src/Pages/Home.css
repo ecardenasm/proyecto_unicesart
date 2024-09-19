@@ -59,14 +59,14 @@
   margin-bottom: 30px;
 }
 
-.imagenes>img { 
+.imagenes>img {
   height: 250px;
   width: 285px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #4b4b4b;
 }
 
-footer{
+footer {
   width: 100%;
   background-color: #e6e6e6;
   color: #4b4b4b;
@@ -75,7 +75,7 @@ footer{
   padding: 2% 1%;
 }
 
-.containFooter{
+.containFooter {
   width: 98%;
   margin: auto;
   display: flex;
@@ -83,18 +83,18 @@ footer{
   justify-content: space-evenly;
 }
 
-.containFooter>div{
+.containFooter>div {
   display: flex;
   margin-top: 20px;
-  margin-bottom: 15px ;
+  margin-bottom: 15px;
   flex-direction: column;
   flex-wrap: wrap;
   width: 400px;
-  justify-content : center;
+  justify-content: center;
   align-items: center;
 }
 
-footer>p{
+footer>p {
   display: block;
   width: 100%;
   text-align: center;
@@ -104,21 +104,26 @@ footer>p{
   color: #3b3a3a;
 }
 
-footer>h2{
+footer>h2 {
   font-size: 25px;
   font-weight: 600;
   color: #3b3a3a;
 }
 
 
-@media screen and (max-width:800px) {
-  
-  .samples{
-    height: 800px;
+@media screen and (max-width:500px) {
+
+  .samples {
+    height: 900px !important;
+  }
+
+  .back {
+    height: 900px !important;
   }
 
   .onSamples {
-    top: 180px;
+    top: 155px !important;
+    height: 910px !important;
   }
 
   .contenido {
@@ -127,8 +132,8 @@ footer>h2{
 
   .contenido>h2 {
     font-size: 45px;
-    height: 270px;
-    margin-bottom: 0px;
+    margin-top: 5%;
+    margin-bottom: 10%;
   }
 
   .contenido>span {
@@ -143,15 +148,55 @@ footer>h2{
     margin-bottom: 30px;
   }
 
+  footer>p {
+    width: 96%;
+    font-size: 18px;
+  }
+
+  .containFooter {
+    flex-direction: column !important;
+  }
+
+  footer>h2 {
+    display: block;
+    width: 95% !important;
+    margin: auto !important;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:1050px) {
+  
   .imagenes>img {
     width: 46%;
     margin-bottom: 15px;
     border-radius: 10px;
   }
 
-  footer p {
-    width: 300px;
-    top: 55%;
-    left: 50%;
+  .back {
+    height: 950px;
+  }
+
+  .onSamples {
+    top: 105px;
+    height: 960px;
+  }
+
+  footer>p {
+    width: 96%;
+    font-size: 18px;
+  }
+
+  .containFooter {
+    flex-direction: row;
+  }
+
+  footer>h2 {
+    display: block;
+    width: 95%;
+  }
+
+  .containFooter>div p{
+    text-align: center;
   }
 }

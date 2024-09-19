@@ -9,25 +9,30 @@ import NavBar from './Componets/NavBar.jsx';
 import Login from "./Pages/LoginPage.jsx";
 import Register from "./Pages/RegisterPage.jsx";
 import Welcome from "./Pages/Welcome.jsx";
+import RecuperarContraseña from './Pages/RecuperarContraseña.jsx';
+import { PostProvider } from './context/PostContext.jsx';
 
 function App() {
   return (
     <>
       <AuthProvider>
-        <Router>
-          <div className='App'>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Welcome />} />
-              <Route path="/singin" element={<Login />} />
-              <Route path="/singup" element={<Register />} />
-              <Route path='/home' element={<DashBoard />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/configuration' element={<Configuration />} />
-            </Routes>
-            <Footer />
-          </div>
-        </Router>
+        <PostProvider>
+          <Router>
+            <div className='App'>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Welcome />} />
+                <Route path="/singin" element={<Login />} />
+                <Route path="/singup" element={<Register />} />
+                <Route path="/recover" element={<RecuperarContraseña />} />
+                <Route path='/home' element={<DashBoard />} />
+                <Route path="/profile/:username" element={<Profile />} />
+                <Route path='/configuration' element={<Configuration />} />
+              </Routes>
+              <Footer />
+            </div>
+          </Router>
+        </PostProvider>
       </AuthProvider>
     </>
   );

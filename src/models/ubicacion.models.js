@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const municipioSchema = new mongoose.Schema({
     id: { type: String, required: true },
     nombreMunicipio: { type: String, required: true }

@@ -11,6 +11,13 @@
     height: 796px;
 }
 
+.recuperacion {
+    height: 700px;
+    padding-left: 30%;
+    padding-top: 2%;
+    background: #156436;
+}
+
 .dialogo {
     flex-direction: column;
     display: flex;
@@ -29,6 +36,21 @@
     background: #ffffffca;
     width: 400px;
     border-radius: 15px;
+}
+
+.formularioRegister {
+    width: 920px;
+    margin-left: 4%;
+}
+
+.camposRegister {
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: start;
+    flex-wrap: wrap;
+    width: 920px;
 }
 
 .field {
@@ -53,9 +75,15 @@
     border: 2px solid #1d8348;
 }
 
-.field>select {
+.field>div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1%;
+}
+
+.field select {
     font-size: 18px;
-    width: 430px;
+    width: 410px;
     background: transparent;
     padding: 8px 5px 5px 3px;
     border-top-right-radius: 10px;
@@ -63,7 +91,7 @@
     border: 2px solid #1d8348;
 }
 
-.field>i {
+.field i {
     background-color: #1d8348;
     color: #fff;
     display: flex;
@@ -104,23 +132,36 @@
     margin-left: 8px;
 }
 
-.error-message{
+.error-message {
     margin: auto;
     color: #656464;
 }
 
 .campo {
-    width: 470px;
+    width: 450px;
+    margin: 5px 0px;
+    align-items: flex-start;
 }
 
 .campo>input {
-    width: 420px;
+    width: 400px;
 }
 
 .campo>button {
     margin-left: 4%;
     margin-top: 10px;
     margin-bottom: 2px;
+}
+
+.campo>textarea {
+    font-size: 20px;
+    background: transparent;
+    padding: 1px 1px 1px 2px;
+    height: 34px;
+    width: 407px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #1d8348;
 }
 
 .campo>button img {
@@ -136,20 +177,32 @@
     font-size: 15px;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:500px) {
 
     .imagenFondo {
-        height: 520px;
+        height: 800px;
+    }
+
+    .imagenFondo>img {
+        height: 800px;
     }
 
     .dialogo {
-        top: 180px;
-        height: 522px;
+        top: 158px !important;
+        height: 800px;
         align-items: flex-start;
     }
 
     .formulario {
-        padding-left: 0%;
+        width: 99% !important;
+        margin: auto;
+        padding-left: 0% !important;
+    }
+
+    .formularioRegister {
+        width: 95%;
+        margin-top: 5%;
+        height: auto;
     }
 
     .field>p {
@@ -164,17 +217,14 @@
         font-size: 18px;
     }
 
+    .field>i{
+        line-height: 34px;
+        font-size: 17px;
+    }
+
     .field>button img {
         height: 20px;
         margin-left: 8px;
-    }
-
-    .campo {
-        width: 98%;
-    }
-
-    .campo>input {
-        font-size: 15px;
     }
 
     .campo>button {
@@ -187,9 +237,79 @@
         margin-left: 8px;
     }
 
+    .campo>input {
+        width: 85% !important;
+    }
+
+    .campo select {
+        width: 88% !important;
+
+    }
+
+    .campo>textarea{
+        width: 85% !important;
+    }
 
     .contribucion {
         justify-content: center;
     }
 
+    .recuperacion {
+        padding-left: 0%;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:1050px) {
+    .formularioRegister {
+        width: 98%;
+        margin-top: 5%;
+        height: auto;
+        margin: auto;
+    }
+
+    .camposRegister {
+        width: 100%;
+    }
+
+    .campo {
+        width: 98%;
+    }
+
+    .campo>input[type="date"] {
+        font-size: 15px;
+        padding: 5px 3px 6px;
+    }
+
+    .campo>input {
+        font-size: 15px;
+        width: 90%;
+    }
+
+    .campo i {
+        font-size: 16px;
+        height: 34px;
+        line-height: 34px;
+    }
+
+    .jump {
+        display: none;
+    }
+
+    .field>div {
+        width: 100%;
+    }
+
+    .campo select {
+        width: 91%;
+        font-size: 15px;
+        padding: 5px 2px 6px 2px;
+    }
+
+    .campo>textarea {
+        width: 90%;
+        height: 29px;
+        font-size: 15px;
+        padding: 2px 3px 0px 2px;
+    }
 }

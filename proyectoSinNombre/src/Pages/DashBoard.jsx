@@ -1,19 +1,17 @@
 import Adversiting from "../Componets/Advertising";
 import NewPost from "../Componets/NewPost";
 import Post from "../Componets/Post";
-import VideoPost from "../Componets/VideoPost";
 import { useAuth } from "../context/AuthContext.jsx";
+import { usePost } from "../context/PostContext.jsx";
 import './DashBoard.css'
 
 const DashBoard = () => {
     const imagenes = [
-        'src/assets/imagen1.jpeg',
-        'src/assets/imagen2.jpg',
-        'src/assets/imagen3.jpeg',
         'src/assets/not1.png',
         'src/assets/not2.png'
     ];
 
+    const { publicaciones } = usePost(); // Aquí obtienes las publicaciones desde el contexto de Post
     const { isAuthenticated } = useAuth();
 
     return (
@@ -22,17 +20,14 @@ const DashBoard = () => {
             <section className="main">
                 <div className="dashboard">
                     <div className="mainContent">
-                        <Post imagen={imagenes[0]} />
-                        <Post imagen={imagenes[1]} />
-                        <VideoPost />
-                        <Post imagen={imagenes[2]} />
-                        <Post imagen="" />
-                        <Post />
+                        {/* Mapea las publicaciones y pasa la información de cada una al componente Post */}
+                        {publicaciones.map((post) => (
+                            <Post key={post._id} post={post} />
+                        ))}                        
                     </div>
                     <div className="rightContent">
-                        <Adversiting imagen={imagenes[3]} />
-                        <Adversiting imagen={imagenes[4]} />
-                        <Adversiting />
+                        <Adversiting imagen={imagenes[0]} />
+                        <Adversiting imagen={imagenes[1]} />
                     </div>
                 </div>
             </section>
@@ -40,4 +35,4 @@ const DashBoard = () => {
     );
 }
 
-export default DashBoard
+export default DashBoard;
